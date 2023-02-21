@@ -10,21 +10,7 @@ var answering = false;
 var right_answer = false;
 var commands = [];
 
-/*
-
-******************************
-*                            *
-* CHANGE TO THE FUCKING 23rd *
-*                            *
-*             |              *
-*             |              *
-*             |              *
-*             |              *
-*             v              *
-******************************
-
-*/
-const dDay = new Date('2023-02-21T08:04:00');
+const dDay = new Date('2023-02-23T08:04:00');
 
 function printDiff() {
   today = new Date();
