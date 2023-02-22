@@ -6,7 +6,7 @@ body {
 	min-width: 550px;
 	color: #519975;
 	background: #211D1B;
-	font-family: "Fira Code";
+	font-family: 'fira_coderegular';
 	font-variant-ligatures: discretionary-ligatures;
 	overflow-x: hidden;
   }
