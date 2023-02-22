@@ -6,11 +6,26 @@ var terminal = document.getElementById("terminal");
 
 var git = 0;
 var task = 0;
+var correct_answers = 0;
 var answering = false;
 var right_answer = false;
 var commands = [];
 
-const dDay = new Date('2023-02-23T08:04:00');
+/*
+
+******************************
+*                            *
+* CHANGE TO THE FUCKING 23rd *
+*                            *
+*             |              *
+*             |              *
+*             |              *
+*             |              *
+*             v              *
+******************************
+
+*/
+const dDay = new Date('2023-02-21T08:04:00');
 
 function printDiff() {
   today = new Date();
@@ -50,15 +65,26 @@ window.addEventListener("keyup", enterKey);
 textarea.value = "";
 command.innerHTML = textarea.value;
 
-function enterKey(e) {
-  console.log(answering);
-  if (answering) {
-    if (textarea.value === answers[task]) {
-      right_answer = true;
+/* function isInArray(val, arr) {
+  arr.forEach(function(item, index) {
+    if (item.localeCompare(val) === 0) {
+      console.log("match!");
+    } else {
+      console.log("no match :(");
     }
+  });
+}
+ */
+function enterKey(e) {
+/*   console.log(answering); */
+  if (answering) {
+    text = textarea.value.toLowerCase().replace(/(\r\n|\n|\r)/gm, "");;
+    // isInArray(text, answers[task]);
+    right_answer = answers[task].includes(text);
     if (e.keyCode == 13) {
       if (right_answer) {
         addLine("Answer: " + command.innerHTML, "no-animation", 0);
+        correct_answers += 1;
         right_answer = false;
       } else {
         addLine(`Wrong answer (${command.innerHTML})`, "error", 0);
@@ -108,18 +134,8 @@ function commander(cmd) {
     case "whoami":
       loopLines(whoami, "color2 margin", 80);
       break;
-    case "video":
-      addLine("Opening YouTube...", "color2", 80);
-      newTab(youtube);
-      break;
-    case "sudo":
-      addLine("Oh no, you're not admin...", "color2", 80);
-      setTimeout(function() {
-        window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
-      }, 1000); 
-      break;
     case "task":
-      if (task < questions.length - 1) {
+      if (task < questions.length - 1 && correct_answers == task) {
         task += 1;
       }
       loopLines(questions[task], "", 80);
